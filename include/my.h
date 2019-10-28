@@ -65,6 +65,7 @@ int    my_strtol(char const *str, char **endptr);
 int    my_int_nbr(char const *str, int letter, int size, char **endptr);
 int    my_delete_non_null(char const *str);
 int    my_str_tol_error(char const *str);
-
+char    *my_infin_add(char *str, char *str2);
+char    *my_infin_add_neg(char *str, char *str2);
 
 #endif /* MY_H_ */
