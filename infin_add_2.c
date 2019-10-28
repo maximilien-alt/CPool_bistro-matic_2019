@@ -5,7 +5,7 @@
 ** infin_add_2.c
 */
 
-#include "my.h"
+#include "include/my.h"
 #include <stdlib.h>
 #include <stdio.h>
 

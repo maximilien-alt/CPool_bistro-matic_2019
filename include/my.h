@@ -68,5 +68,6 @@ int    my_delete_non_null(char const *str);
 int    my_str_tol_error(char const *str);
 char    *my_infin_add(char *str, char *str2);
 char    *my_infin_add_neg(char *str, char *str2);
+int    my_infin_cmp(char *str, char *str2);
 
 #endif /* MY_H_ */

@@ -7,7 +7,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "my.h"
+#include "include/my.h"
 
 int    my_error(int argc, char *argv[])
 {
@@ -89,7 +89,7 @@ char    *my_infin_add(char *str, char *str2)
     }
 }
 
-int    main(int argc, char *argv[])
+/*int    main(int argc, char *argv[])
 {
     char *result;
     int test = my_error(argc, argv);
@@ -112,4 +112,4 @@ int    main(int argc, char *argv[])
     my_putchar('\n');
     free(result);
     return (0);
-}
+}*/

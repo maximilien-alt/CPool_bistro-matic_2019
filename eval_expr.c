@@ -5,7 +5,7 @@
 ** eval_expr_bootstrap.c
 */
 
-#include "my.h"
+#include "include/my.h"
 
 int    eval_expr(char const *str)
 {
