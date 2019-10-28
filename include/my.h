@@ -8,6 +8,7 @@
 #ifndef MY_H_
 #define MY_H_
 
+int    my_putnbr_base(int nbr, char const *base);
 int    my_compute_power_rec(int nb, int p);
 int    my_compute_square_root(int nb);
 int    my_find_prime_sup(int nb);
