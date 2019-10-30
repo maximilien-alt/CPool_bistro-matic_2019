@@ -72,5 +72,10 @@ int    my_infin_cmp(char *str, char *str2);
 char *my_supr_same(char *str, char *strtemp);
 char *my_delete_neg(char *str);
 char *my_strtemp(char *str, char *div);
+int my_mult_zero(char *mult);
+char *my_add_x_zero(char *str, int x, int cursor);
+int    my_clean_add_total(char *str, char *mult);
+char *my_delete_mult(char *mult);
+char *my_zeroo(void);
 
 #endif /* MY_H_ */

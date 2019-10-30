@@ -1,57 +1,95 @@
 /*
 ** EPITECH PROJECT, 2019
-** bistro-matic
+** CPool_bistro-matic_2019
 ** File description:
-** multiplies
+** infin_mult.c
 */
 
-#include "include.h"
+#include "include/my.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-char *add_x_zero(char *a, int x)
+char    *my_result(char *result, int ret, int cursor, int c)
 {
-    for (int icr = my_strlen(a); x > 0; x -= 1, icr += 1)
-        a[icr] = '0';
-    return a;
-}
-
-char *clean(char *buff)
-{
-    int limit = my_strlen(buff);
-    for (int icr = 0; icr < limit; icr += 1)
-        buff[icr] = 0;
-    return (buff);
-}
-
-char *multiply(char *a, char *b, char *tempo, int hold)
-{
-    char *result;
-    result = malloc(sizeof(char *) * (my_strlen(a) * my_strlen(b)));
-    for (int icr = 0; a[icr] != '\0'; icr += 1)
-    {
-        result[0] = (a[icr] - '0') * (*b - '0');
-        if (result[0] >= 10) {
-            result[1] = (result[0] % 10) + '0';
-            result[0] = (result[0] / 10) + '0';
-        }
-        else
-            result[0] = result[0] + '0';
-        add_x_zero(result, icr + hold);
-        tempo = my_infin_add(result, tempo);
-        clean(result);
+    if (ret != 0) {
+        result[cursor] = (c % 10) + '0';
+        result[cursor + 1] = (c / 10) + '0';
+        result[cursor + 2] = '\0';
+    } else {
+        result[cursor] = c + '0';
+        result[cursor + 1] = '\0';
     }
-    if (*(b + 1) != '\0')
-    tempo = multiply(a, b + 1, tempo, hold + 1);
-    else
-        return tempo;
+    return (result);
 }
 
-int main (int ac, char **av)
+char    *my_mult_is_easy(char *str, char mult)
 {
     char *result;
-    result = malloc(sizeof(char *) * (my_strlen(av[2]) + my_strlen(av[1]) + 2));
-    result[0] = '0';
-    result = multiply(my_revstr(av[1]), my_revstr(av[2]), result, 0);
-    my_putstr(result);
-    my_putchar('\n');
-    free (result);
+    int ret = 0;
+    int cursor = 0;
+    int c = 0;
+
+    result = malloc(sizeof(char) * my_strlen(str) + 2);
+    while (str[cursor + 1] != '\0') {
+        c = ((str[cursor] - '0') * (mult - '0') + ret);
+        if (c < 10) {
+            result[cursor] = c + '0';
+        } else {
+            result[cursor] = (c % 10) + '0';
+            ret = (c / 10);
+        }
+        cursor += 1;
+    }
+    c = ((str[cursor] - '0') * (mult - '0') + ret);
+    result = my_result(result, ret, cursor, c);
+    return (my_revstr(result));
+}
+
+char    *my_multiplication(char *str, char *mult, char *add_total, int nul)
+{
+    char *line = my_mult_is_easy(str, mult[0]);
+
+    add_total = my_strcat(add_total, line);
+    add_total = my_add_x_zero(add_total, nul, my_strlen(add_total));
+    mult = my_delete_mult(mult);
+    if (mult[0]) {
+        add_total[my_strlen(add_total)] = ' ';
+        return (my_multiplication(str, mult, add_total, nul + 1));
+    } else {
+        add_total[my_strlen(add_total)] = '\0';
+        return (add_total);
+    }
+}
+
+char    *my_infin_mult(char *str, char *mult)
+{
+    int str_len = my_strlen(str);
+    int mult_len = my_strlen(mult);
+    char *add_total;
+    char *add_final = my_zeroo();
+    char *rev_str = my_revstr(str);
+    char **tab_final;
+    int cursor = 0;
+
+    if (str_len > mult_len) {
+        add_total = malloc(sizeof(char) * my_clean_add_total(str, mult));
+        add_total = my_multiplication(rev_str, my_revstr(mult), add_total, 0);
+    } else {
+        add_total = malloc(sizeof(char) * my_clean_add_total(mult, str));
+        add_total = my_multiplication(my_revstr(mult), rev_str, add_total, 0);
+    }
+    tab_final = my_str_to_word_array(add_total);
+    while (tab_final[cursor] != NULL) {
+        add_final = my_infin_add(add_final, tab_final[cursor]);
+        cursor += 1;
+    }
+    return (add_final);
+}
+
+int    main(int ac, char *av[])
+{
+    char *res = my_infin_mult(av[1], av[2]);
+
+    printf("%s\n", res);
+    return (0);
 }
