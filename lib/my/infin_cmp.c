@@ -44,7 +44,7 @@ int    my_infin_cmp(char *str, char *str2)
     int str_len = my_strlen(str);
     int str2_len = my_strlen(str2);
 
-    if (str_len = str2_len)
+    if (str_len == str2_len)
         return (same_length_cmp(str, str2));
     if (str[0] == '-' && str2[0] == '-') {
         if (str_len < str2_len)

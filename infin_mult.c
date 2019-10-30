@@ -26,7 +26,7 @@ char *multiply(char *a, char *b, char *tempo, int hold)
 {
     char *result;
     result = malloc(sizeof(char *) * (my_strlen(a) * my_strlen(b)));
-    for (int icr = 0; a[icr] != '\0'; icr ++)
+    for (int icr = 0; a[icr] != '\0'; icr += 1)
     {
         result[0] = (a[icr] - '0') * (*b - '0');
         if (result[0] >= 10) {
@@ -45,12 +45,13 @@ char *multiply(char *a, char *b, char *tempo, int hold)
         return tempo;
 }
 
-int main (int ac, char **av) 
+int main (int ac, char **av)
 {
     char *result;
     result = malloc(sizeof(char *) * (my_strlen(av[2]) + my_strlen(av[1]) + 2));
     result[0] = '0';
-    result = multiply(my_revstr(av[1]), my_revstr(av[2]),result, 0);
+    result = multiply(my_revstr(av[1]), my_revstr(av[2]), result, 0);
     my_putstr(result);
+    my_putchar('\n');
     free (result);
 }

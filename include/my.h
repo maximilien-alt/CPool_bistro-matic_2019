@@ -69,5 +69,8 @@ int    my_str_tol_error(char const *str);
 char    *my_infin_add(char *str, char *str2);
 char    *my_infin_add_neg(char *str, char *str2);
 int    my_infin_cmp(char *str, char *str2);
+char *my_supr_same(char *str, char *strtemp);
+char *my_delete_neg(char *str);
+char *my_strtemp(char *str, char *div);
 
 #endif /* MY_H_ */

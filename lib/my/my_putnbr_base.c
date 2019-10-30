@@ -1,11 +1,12 @@
 /*
 ** EPITECH PROJECT, 2019
-** my_putnbr_base.c
+** CPool_bistro-matic_2019
 ** File description:
-** 
+** my_putnbr_base.c
 */
 
 void    my_putchar(char c);
+
 int    my_strlen(char const *str);
 
 int    my_putnbr_base(int nbr, char const *base)

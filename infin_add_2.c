@@ -20,28 +20,6 @@ char    *my_disp_neg(char *result, int letter, int neg)
     return (result);
 }
 
-char    *my_delete_neg(char *str)
-{
-    int letter = 0;
-    int str_len = my_strlen(str);
-    char *cpy;
-    int i = 0;
-
-    if (str[letter] == '-') {
-        cpy = malloc(sizeof(char) * str_len);
-        letter += 1;
-    } else {
-        return (str);
-    }
-    while (str[letter]) {
-        cpy[i] = str[letter];
-        letter += 1;
-        i += 1;
-    }
-    cpy[i] = '\0';
-    return (cpy);
-}
-
 char    *my_calc_str_neg(char *str, char *cpy, char *result, int neg)
 {
     int str_len = my_strlen(str) - 1;
@@ -94,7 +72,7 @@ char    *my_infin_add_neg(char *str, char *str2)
     char *result;
     char *cpy;
 
-    if (str_len > str_len2) {
+    if (my_infin_cmp((my_delete_neg(str)), my_delete_neg(str2))) {
         cpy = malloc(sizeof(char) * (str_len + 1));
         result = malloc(sizeof(char) * (str_len + 3));
         str2 = my_delete_neg(str2);
