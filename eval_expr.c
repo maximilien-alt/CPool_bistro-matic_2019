@@ -57,13 +57,3 @@ char    *eval_expr1(char **str, char *number)
     }
     return (number);
 }
-
-int main (int ac , char ** av)
-{
-    if (ac == 2) {
-        my_putstr(eval_expr(av[1]));
-        my_putchar('\n');
-        return (0);
-    }
-    return (84);
-}

@@ -71,7 +71,7 @@ char    *my_infin_div(char *str, char *div)
     char *tempo;
 
     if (div[0] == '0') {
-        result = "syntax error";
+        result = "error";
         return (result);
     }
     if (my_infin_cmp(my_delete_neg(str), my_delete_neg(div)) == 1) {

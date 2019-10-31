@@ -78,5 +78,6 @@ int    my_clean_add_total(char *str, char *mult);
 char *my_delete_mult(char *mult);
 char *my_zeroo(char *str, char *mult);
 char *my_infin_tol(char *str, char **endptr);
+int my_bistro_error(int ac, char **av, char *buff);
 
 #endif /* MY_H_ */
