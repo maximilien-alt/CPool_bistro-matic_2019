@@ -68,23 +68,21 @@ char    *my_recursive(char *str, char *div, char *result, int cursor)
 char    *my_infin_div(char *str, char *div)
 {
     char *result;
+    char *tempo;
 
-    if (str[0] == '-' && div[0] == '-') {
-        str = my_delete_neg(str);
-        div = my_delete_neg(div);
-    }
-    if (str[0] == '-' || div[0] == '-') {
-        my_putchar('-');
-        str = my_delete_neg(str);
-        div = my_delete_neg(div);
-    }
     if (div[0] == '0') {
         result = "syntax error";
         return (result);
     }
-    if (my_infin_cmp(str, div) == 1) {
-        result = malloc(sizeof(char) * my_strlen(str));
-        result = my_recursive(str, div, result, 0);
+    if (my_infin_cmp(my_delete_neg(str), my_delete_neg(div)) == 1) {
+        result = malloc(sizeof(char) * my_strlen(str) + 1);
+        tempo = malloc(sizeof(char) * my_strlen(str));
+        result = my_zeroo(str, div);
+        str = my_delete_neg(str);
+        div = my_delete_neg(div);
+        tempo = my_recursive(str, div, tempo, 0);
+        my_strcat(result, tempo);
+        result = my_str_delete_null(result);
         return (result);
     } else
         return (my_error_div(1));
