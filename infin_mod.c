@@ -9,18 +9,6 @@
 #include <stdio.h>
 #include "include/my.h"
 
-char    *my_error_div1(int a)
-{
-    char *error;
-
-    if (a == 1) {
-        error = malloc(sizeof(char) * 2);
-        error[0] = '0';
-        error[1] = '\0';
-        return (error);
-    }
-}
-
 char    *my_print_neg1(char *str)
 {
     int letter = 0;
@@ -85,5 +73,5 @@ char    *my_infin_mod(char *str, char *div)
         result = my_str_delete_null(result);
         return (result);
     } else
-        return (my_error_div1(1));
+        return (str);
 }

@@ -52,13 +52,13 @@ int my_h(void)
 
 int    bistro_main(int ac, char **av, int size, char *result)
 {
-    char buff[size];
+    char buff[size + 1];
 
     if ((av[1][0] == '-' && av[1][1] == 'h') && ac == 2) {
         my_h();
         return (0);
     }
-    read(0, buff, size);
+    read(0, buff, size + 1);
     buff[size] = '\0';
     if (my_bistro_error(ac, av, buff) == 0) {
         write(2, "syntax error", 13);
@@ -71,6 +71,7 @@ int    bistro_main(int ac, char **av, int size, char *result)
         return (0);
     }
     my_putstr(result);
+    free (result);
     return (0);
 }
 

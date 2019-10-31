@@ -54,7 +54,7 @@ char    *create_my_cpy(char *str, char *cpy, char *result, char *str2)
 {
     int letter = 0;
 
-    while (str[letter]) {
+    while (str[letter] != '\0') {
         cpy[letter] = str[letter];
         letter += 1;
     }
@@ -88,28 +88,3 @@ char    *my_infin_add(char *str, char *str2)
         return (my_str_delete_null(result));
     }
 }
-
-/*int    main(int argc, char *argv[])
-{
-    char *result;
-    int test = my_error(argc, argv);
-    int av1_num = 0;
-    int av2_num = 0;
-
-    if (test == 1)
-        return (84);
-    av1_num = my_str_is_negative(argv[1]);
-    av2_num = my_str_is_negative(argv[2]);
-    if (av1_num == 1 && av2_num == 1) {
-        my_putchar('-');
-        result = my_infin_add(my_delete_neg(argv[1]), my_delete_neg(argv[2]));
-    } else
-        if (av1_num == 1 || av2_num == 1)
-            result = my_infin_add_neg(argv[1], argv[2]);
-        else
-            result = my_infin_add(argv[1], argv[2]);
-    my_putstr(result);
-    my_putchar('\n');
-    free(result);
-    return (0);
-}*/

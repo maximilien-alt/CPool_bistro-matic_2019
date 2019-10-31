@@ -8,78 +8,52 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int my_compute_power_rec(int n, int pow);
-
-void my_putchar(char c);
-
-void my_putstr(char const *str);
-
-int perfect_size(char *str)
+int    is_operator(char c)
 {
-    int icr = 0;
-    while (str[icr] >= '0' && str[icr] <= '9')
-        icr += 1;
-    return (icr);
+    return ((c == '(' || c == ')' || c == '+' || c == '-' ||
+    c == '*' || c == '/' || c == '%'));
 }
 
-int    my_delete_spaces(char *str)
+char    *my_par(char *str, char **endptr)
 {
-    int letter = 0;
+    char *result;
+    int cursor = 1;
+    int var = 1;
+    int size = 0;
 
-    while (str[letter] == ' ' && str[letter]) {
-        letter += 1;
+    while (!is_operator(str[cursor]) && str[cursor])
+        cursor += 1;
+    result = malloc(sizeof(char) * (cursor + 1));
+    while (size < (cursor - 1)) {
+        result[size] = str[var];
+        size += 1;
+        var += 1;
     }
-    if ((str[letter] >= '0' && str[letter] <= '9') && str[letter]) {
-        return (letter);
-    }
-    return (0);
+    result[size] = '\0';
+    *endptr = &str[size + 1];
+    return (result);
 }
 
-char    *my_parser(char *str, int letter, int size, char **endptr)
-{
-    char *parse;
-    parse =  malloc(perfect_size(str));
-    char *cpy;
-
-    size += -1;
-    while (size >= 0) {
-        parse[letter] = str[letter];
-        size = size - 1;
-        letter = letter + 1;
-    }
-    *endptr = &str[letter];
-    return (parse);
-}
-
-int my_is_operator (char c)
-{
-    if (c == '-' || c == '+' || c == '/' )
-        return (1);
-    else if (c == '*' || c == '%' || c == '(')
-        return (1);
-    else if (c == ')')
-        return (1);
-    else
-        return (0);
-}
 char    *my_infin_tol(char *str, char **endptr)
 {
-    char  *result;
-    result = malloc(sizeof(char) * perfect_size(str));
+    char *result;
+    int cursor = 0;
     int size = 0;
-    int letter = my_delete_spaces(str);
 
-    if (letter == 0 && str[letter] == '\0') {
-        *endptr = &str[letter];
-        return (0);
+    if (str[cursor] == '(') {
+        result = my_par(str, endptr);
+        return (result);
     }
-    while (((str[letter] >= '0' && str[letter] <= '9') ||
-    (str[letter] == '-' && (letter == 0 || my_is_operator(str[letter - 1]))))
-            && str[letter] != '\0') {
-        letter = letter + 1;
-        size = size + 1;
+    if (is_operator(str[cursor]) && str[cursor])
+        cursor += 1;
+    while (!is_operator(str[cursor]) && str[cursor])
+        cursor += 1;
+    result = malloc(sizeof(char) * (cursor + 1));
+    while (size < cursor) {
+        result[size] = str[size];
+        size += 1;
     }
-    letter = letter - size;
-    result = my_parser(str, letter, size, endptr);
+    result[size] = '\0';
+    *endptr = &str[size];
     return (result);
 }
