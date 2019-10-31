@@ -103,8 +103,3 @@ char    *my_infin_mult(char *str, char *mult)
         test = 1;
     return (final_add(add_final, tab_final, test));
 }
-
-int main(int ac, char **av)
-{
-    printf("%s\n", my_infin_mult(av[1], av[2]));
-}

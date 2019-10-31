@@ -76,6 +76,7 @@ int my_mult_zero(char *mult);
 char *my_add_x_zero(char *str, int x, int cursor);
 int    my_clean_add_total(char *str, char *mult);
 char *my_delete_mult(char *mult);
-char *my_zeroo(void);
+char *my_zeroo(char *str, char *mult);
+char *my_infin_tol(char *str, char **endptr);
 
 #endif /* MY_H_ */
