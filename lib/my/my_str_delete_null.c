@@ -9,20 +9,6 @@
 
 int my_strlen(char *str);
 
-char    *my_str_is_easy(char *str, char *cpy)
-{
-    int str_len = my_strlen(str);
-    int letter = 0;
-
-    cpy = malloc(sizeof(char) * str_len);
-    while (str[letter]) {
-        cpy[letter] = str[letter];
-        letter += 1;
-    }
-    cpy[letter] = '\0';
-    return (cpy);
-}
-
 char    *my_supr_null(char *str, char *cpy, int letter)
 {
     int cursor = 0;
@@ -50,7 +36,7 @@ char    *my_cpy_without_null(char *str, char *cpy, int letter, int zero)
     int str_len = my_strlen(str);
 
     if (str[0] != '0')
-        return (my_str_is_easy(str, cpy));
+        return (str);
     while (str[letter] == '0' && str[letter])
         letter += 1;
     if (letter == str_len) {
