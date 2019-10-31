@@ -9,6 +9,8 @@ int my_strlen(char *str);
 
 int my_getnbr(char *str);
 
+int my_occ(char *str);
+
 int my_miss_matching_par(char *buff)
 {
     int open = 0;
@@ -36,6 +38,10 @@ int my_bistro_error(int ac, char **av, char *buff)
     if (buff[0] == '\0')
         return (0);
     if (my_miss_matching_par(buff) == 0)
+        return (0);
+    if (my_occ(av[1]) == 0)
+        return (0);
+    if (my_occ(av[2]) == 0)
         return (0);
     return (1);
 }

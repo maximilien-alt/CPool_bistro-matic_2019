@@ -71,7 +71,6 @@ int    bistro_main(int ac, char **av, int size, char *result)
         return (0);
     }
     my_putstr(result);
-    free (result);
     return (0);
 }
 

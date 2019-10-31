@@ -31,15 +31,14 @@ char    *my_recursive1(char *str, char *div, char *result, int cursor)
 {
     int var_result = 0;
     char *str_temp = my_strtemp(str, div);
-    char *check = my_infin_add_neg(str_temp, div);
-    char *rev_div = my_print_neg1(my_revstr(div));
+    char *check = my_infin_sub(str_temp, div);
 
     while (check[0] != '-') {
         var_result += 1;
-        check = my_infin_add_neg(rev_div, check);
+        check = my_infin_sub(check, div);
     }
     result[cursor] = var_result + '0';
-    check = my_infin_add_neg(check, div);
+    check = my_infin_sub(div, my_delete_neg(check));
     str = my_strcat(check, my_supr_same(str, str_temp));
     if (my_infin_cmp(div, str) == 0) {
         return (my_recursive1(str, div, result, cursor + 1));

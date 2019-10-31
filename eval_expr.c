@@ -15,6 +15,8 @@ char *my_infin_mod(char *str, char *div);
 
 char *eval_expr1(char **str, char *number);
 
+char *my_infin_sub(char *str, char *str2);
+
 char    *eval_expr(char *str)
 {
     char **endptr;
@@ -49,7 +51,7 @@ char    *eval_expr1(char **str, char *number)
             number = my_infin_add(number, \
             eval_expr1(str, my_infin_tol(str[0] + 1, str)));
         if (str[0][0] == '-')
-            number = my_infin_add_neg(number, \
+            number = my_infin_sub(number, \
             eval_expr1(str, my_infin_tol(str[0] + 1, str)));
         if (str[0][0] == '%')
             number = my_infin_mod(number, \
