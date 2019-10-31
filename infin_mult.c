@@ -11,7 +11,7 @@
 
 char    *my_result(char *result, int ret, int cursor, int c)
 {
-    if (ret != 0) {
+    if (c >= 10) {
         result[cursor] = (c % 10) + '0';
         result[cursor + 1] = (c / 10) + '0';
         result[cursor + 2] = '\0';
@@ -34,6 +34,7 @@ char    *my_mult_is_easy(char *str, char mult)
         c = ((str[cursor] - '0') * (mult - '0') + ret);
         if (c < 10) {
             result[cursor] = c + '0';
+            ret = 0;
         } else {
             result[cursor] = (c % 10) + '0';
             ret = (c / 10);
@@ -49,7 +50,7 @@ char    *my_multiplication(char *str, char *mult, char *add_total, int nul)
 {
     char *line = my_mult_is_easy(str, mult[0]);
 
-    add_total = my_strcat(add_total, line);
+    add_total = my_strcat(add_total, my_str_delete_null(line));
     add_total = my_add_x_zero(add_total, nul, my_strlen(add_total));
     mult = my_delete_mult(mult);
     if (mult[0]) {
@@ -90,6 +91,6 @@ int    main(int ac, char *av[])
 {
     char *res = my_infin_mult(av[1], av[2]);
 
-    printf("%s\n", res);
+    printf("resultat final = %s\n", res);
     return (0);
 }
