@@ -9,6 +9,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+char *final_add(char *res, char **tab, int test)
+{
+    int cursor = 0;
+    int is_neg = test;
+    char *tempo;
+    tempo = malloc(sizeof(char) * my_strlen(res));
+    if (*res == '-')
+        tempo[0] = '-';
+    res = res + is_neg;
+    while (tab[cursor] != NULL) {
+        res = my_infin_add(res, tab[cursor]);
+        cursor += 1;
+    }
+    my_strcat(tempo, res);
+    return (my_str_delete_null(tempo));
+}
+
 char    *my_result(char *result, int ret, int cursor, int c)
 {
     if (c >= 10) {
@@ -67,10 +84,12 @@ char    *my_infin_mult(char *str, char *mult)
     int str_len = my_strlen(str);
     int mult_len = my_strlen(mult);
     char *add_total;
-    char *add_final = my_zeroo();
+    char *add_final = my_zeroo(str, mult);
+    str = my_delete_neg(str);
+    mult = my_delete_neg(mult);
     char *rev_str = my_revstr(str);
     char **tab_final;
-    int cursor = 0;
+    int test = 0;
 
     if (str_len > mult_len) {
         add_total = malloc(sizeof(char) * my_clean_add_total(str, mult));
@@ -80,17 +99,12 @@ char    *my_infin_mult(char *str, char *mult)
         add_total = my_multiplication(my_revstr(mult), rev_str, add_total, 0);
     }
     tab_final = my_str_to_word_array(add_total);
-    while (tab_final[cursor] != NULL) {
-        add_final = my_infin_add(add_final, tab_final[cursor]);
-        cursor += 1;
-    }
-    return (add_final);
+    if (add_final[0] == '-')
+        test = 1;
+    return (final_add(add_final, tab_final, test));
 }
 
-int    main(int ac, char *av[])
+int main(int ac, char **av)
 {
-    char *res = my_infin_mult(av[1], av[2]);
-
-    printf("resultat final = %s\n", res);
-    return (0);
+    printf("%s\n", my_infin_mult(av[1], av[2]));
 }
