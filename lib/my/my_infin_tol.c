@@ -51,6 +51,17 @@ char    *my_parser(char *str, int letter, int size, char **endptr)
     return (parse);
 }
 
+int my_is_operator (char c)
+{
+    if (c == '-' || c == '+' || c == '/' )
+        return (1);
+    else if (c == '*' || c == '%' || c == '(')
+        return (1);
+    else if (c == ')')
+        return (1);
+    else
+        return (0);
+}
 char    *my_infin_tol(char *str, char **endptr)
 {
     char  *result;
@@ -62,7 +73,8 @@ char    *my_infin_tol(char *str, char **endptr)
         *endptr = &str[letter];
         return (0);
     }
-    while ((str[letter] >= '0' && str[letter] <= '9') && str[letter] != '\0') {
+    while (((str[letter] >= '0' && str[letter] <= '9') || (str[letter] == '-' && (letter == 0 || my_is_operator(str[letter - 1])))) 
+            && str[letter] != '\0') {
         letter = letter + 1;
         size = size + 1;
     }
