@@ -50,11 +50,9 @@ int my_h(void)
     return (0);
 }
 
-int    bistro_main(int ac, char **av)
+int    bistro_main(int ac, char **av, int size, char *result)
 {
-    int size = my_getnbr(av[3]);
     char buff[size];
-    char *result;
 
     if ((av[1][0] == '-' && av[1][1] == 'h') && ac == 2) {
         my_h();
@@ -68,16 +66,24 @@ int    bistro_main(int ac, char **av)
     }
     my_new_buffer(buff, av[2]);
     result = eval_expr(buff);
+    if (my_strcmp(result, "error") == 0) {
+        write(2, "syntax error", 13);
+        return (0);
+    }
     my_putstr(result);
     return (0);
 }
 
 int    main(int ac, char **av)
 {
+    int size = 0;
+    char *result;
+
     if (ac != 4 && ac != 2) {
         write(2, "syntax error", 13);
         return (0);
     }
-    bistro_main(ac, av);
+    size = my_getnbr(av[3]);
+    bistro_main(ac, av, size, result);
     return (0);
 }
