@@ -73,7 +73,8 @@ char    *my_infin_tol(char *str, char **endptr)
         *endptr = &str[letter];
         return (0);
     }
-    while (((str[letter] >= '0' && str[letter] <= '9') || (str[letter] == '-' && (letter == 0 || my_is_operator(str[letter - 1])))) 
+    while (((str[letter] >= '0' && str[letter] <= '9') ||
+    (str[letter] == '-' && (letter == 0 || my_is_operator(str[letter - 1]))))
             && str[letter] != '\0') {
         letter = letter + 1;
         size = size + 1;
