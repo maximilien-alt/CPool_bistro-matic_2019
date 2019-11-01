@@ -14,9 +14,14 @@ char *final_add(char *res, char **tab, int test)
     int cursor = 0;
     int is_neg = test;
     char *tempo;
-    tempo = malloc(sizeof(char) * my_strlen(res));
-    if (*res == '-')
+    tempo = malloc(sizeof(char) * (my_strlen(res) + 1));
+    if (*res == '-') {
         tempo[0] = '-';
+        tempo[1] = 0;
+    }
+    else {
+        tempo[0] = 0;
+    }
     res = res + is_neg;
     while (tab[cursor] != NULL) {
         res = my_infin_add(res, tab[cursor]);
@@ -67,6 +72,8 @@ char    *my_multiplication(char *str, char *mult, char *add_total, int nul)
 {
     char *line = my_mult_is_easy(str, mult[0]);
 
+    if (nul == 0)
+        add_total[0] = 0;
     add_total = my_strcat(add_total, my_str_delete_null(line));
     add_total = my_add_x_zero(add_total, nul, my_strlen(add_total));
     mult = my_delete_mult(mult);
