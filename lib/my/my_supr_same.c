@@ -18,13 +18,13 @@ char    *my_supr_same(char *str, char *strtemp)
     int cursor = 0;
 
     if (c > 0) {
-        result = malloc(sizeof(char) * c);
+        result = malloc(sizeof(char) * (c + 1));
         while (str[strtemp_len]) {
             result[cursor] = str[strtemp_len];
             strtemp_len += 1;
             cursor += 1;
+            result[cursor] = '\0';
         }
-        result[cursor] = '\0';
         return (result);
     }
     return ("");

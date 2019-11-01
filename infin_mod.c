@@ -5,72 +5,57 @@
 ** infin_div.c
 */
 
+#include "include/my.h"
 #include <stdlib.h>
 #include <stdio.h>
-#include "include/my.h"
 
-char    *my_print_neg1(char *str)
+char *my_recursive1(char *str, char *div, char *result, int cursor)
 {
-    int letter = 0;
-    int cursor = 0;
-    char *res;
-
-    res = malloc(sizeof(char) * my_strlen(str) + 1);
-    res[letter] = '-';
-    letter += 1;
-    while (str[cursor]) {
-        res[letter] = str[cursor];
-        cursor += 1;
-        letter += 1;
-    }
-    res[letter] = '\0';
-    return (res);
-}
-
-char    *my_recursive1(char *str, char *div, char *result, int cursor)
-{
-    int var_result = 0;
     char *str_temp = my_strtemp(str, div);
     char *check = my_infin_sub(str_temp, div);
+    int var_result = 0;
 
+    my_revstr(str_temp);
+    my_revstr(div);
     while (check[0] != '-') {
-        var_result += 1;
         check = my_infin_sub(check, div);
+        my_revstr(div);
+        var_result += 1;
     }
     result[cursor] = var_result + '0';
+    result[cursor + 1] = '\0';
     check = my_infin_sub(div, my_delete_neg(check));
     str = my_strcat(check, my_supr_same(str, str_temp));
     if (my_infin_cmp(div, str) == 0) {
-        return (my_recursive1(str, div, result, cursor + 1));
+        return (my_recursive1(str, my_revstr(div), result, cursor + 1));
     } else {
-    if (str[0] == '0' && str[1] != '\0') {
-            result[cursor + 1] = str[0];
-            result[cursor + 2] = '\0';
-        } else
-        result[cursor + 1] = '\0';
-    return (check);
+        return (check);
     }
 }
 
-char    *my_infin_mod(char *str, char *div)
+char *my_infin_mod(char *str, char *div)
 {
     char *result;
-    char *tempo;
+    char *str_new = my_delete_neg(str);
+    char *div_new = my_delete_neg(div);
 
     if (div[0] == '0') {
         result = "error";
         return (result);
     }
-    if (my_infin_cmp(my_delete_neg(str), my_delete_neg(div)) == 1) {
-        result = malloc(sizeof(char) * my_strlen(str) + 1);
-        tempo = malloc(sizeof(char) * my_strlen(str));
-        result = my_zeroo(str, div);
-        str = my_delete_neg(str);
-        div = my_delete_neg(div);
-        tempo = my_recursive1(str, div, tempo, 0);
-        my_strcat(result, tempo);
-        result = my_str_delete_null(result);
-        return (result);
-    } else
-        return (str);
+    if (my_infin_cmp(str_new, div_new) == 1) {
+        if (str[0] == '-' || div[0] == '-') {
+            result = malloc(sizeof(char) * (my_strlen(str)+ 2));
+            result[0] = '-';
+            result[1] = '\0';
+            result = my_recursive1(str_new, div_new, &result[1], 0);
+        } else {
+            result = malloc(sizeof(char) * (my_strlen(str)+ 1));
+            result[0] = '\0';
+            result = my_recursive1(str, div, result, 0);
+        }
+    } else {
+        result = (str);
+    }
+    return (&result[0]);
 }
