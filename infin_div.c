@@ -11,7 +11,6 @@
 
 char *my_return_is_easy(char *str, char *result, int cursor)
 {
-<<<<<<< HEAD
     if (str[0] == '0' && str[1] != '\0') {
         result[cursor + 1] = str[0];
         result[cursor + 2] = '\0';
@@ -22,19 +21,6 @@ char *my_return_is_easy(char *str, char *result, int cursor)
 }
 
 char *my_recursive(char *str, char *div, char *result, int cursor)
-=======
-    char *error;
-
-    if (a == 1) {
-        error = malloc(sizeof(char) * 2);
-        error[0] = '0';
-        error[1] = '\0';
-        return (error);
-    }
-}
-
-char    *my_recursive(char *str, char *div, char *result, int cursor)
->>>>>>> 9c1c1c34c192bcc9f739d9168168081807c48071
 {
     char *str_temp = my_strtemp(str, div);
     char *check = my_infin_sub(str_temp, div);
@@ -50,7 +36,6 @@ char    *my_recursive(char *str, char *div, char *result, int cursor)
     result[cursor] = var_result + '0';
     result[cursor + 1] = '\0';
     check = my_infin_sub(div, my_delete_neg(check));
-    printf("%s\n", check);
     str = my_strcat(check, my_supr_same(str, str_temp));
     if (my_infin_cmp(div, str) == 0) {
         return (my_recursive(str, my_revstr(div), result, cursor + 1));
@@ -69,7 +54,6 @@ char *my_infin_div(char *str, char *div)
         result = "error";
         return (result);
     }
-<<<<<<< HEAD
     if (my_infin_cmp(str_new, div_new) == 1) {
         if (str[0] == '-' || div[0] == '-') {
             result = malloc(sizeof(char) * (my_strlen(str)+ 2));
@@ -85,26 +69,4 @@ char *my_infin_div(char *str, char *div)
         result = "0";
     }
     return (&result[0]);
-=======
-    if (my_infin_cmp(my_delete_neg(str), my_delete_neg(div)) == 1) {
-        result = malloc(sizeof(char) * my_strlen(str) + 1);
-        tempo = malloc(sizeof(char) * my_strlen(str));
-        result = my_zeroo(str, div);
-        str = my_delete_neg(str);
-        div = my_delete_neg(div);
-        tempo = my_recursive(str, div, tempo, 0);
-        my_strcat(result, tempo);
-        result = my_str_delete_null(result);
-        return (result);
-    } else
-        return (my_error_div(1));
-}
-
-int main(int ac, char *av[])
-{
-    char *res = my_infin_div(av[1], av[2]);
-    printf("%s\n", res);
-    free (res);
-    return (0);
->>>>>>> 9c1c1c34c192bcc9f739d9168168081807c48071
 }
