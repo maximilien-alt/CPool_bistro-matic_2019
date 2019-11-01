@@ -17,9 +17,13 @@ char    *my_strtemp(char *str, char *div)
     int cursor = 0;
 
     str_temp = malloc(sizeof(char) * (my_strlen(str) + 1));
+<<<<<<< HEAD
     str_temp[cursor] = str[cursor];
     cursor += 1;
     str_temp[cursor] = '\0';
+=======
+    str_temp[0] = '\0';
+>>>>>>> 9c1c1c34c192bcc9f739d9168168081807c48071
     while (my_infin_cmp(str_temp, div) == 0) {
         str_temp[cursor] = str[cursor];
         cursor += 1;

@@ -27,5 +27,5 @@ char    *my_supr_same(char *str, char *strtemp)
         }
         return (result);
     }
-    return ("");
+    return ("\0");
 }
