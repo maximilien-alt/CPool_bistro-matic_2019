@@ -21,24 +21,6 @@ char    *my_error_div(int a)
     }
 }
 
-char    *my_print_neg(char *str)
-{
-    int letter = 0;
-    int cursor = 0;
-    char *res;
-
-    res = malloc(sizeof(char) * my_strlen(str) + 1);
-    res[letter] = '-';
-    letter += 1;
-    while (str[cursor]) {
-        res[letter] = str[cursor];
-        cursor += 1;
-        letter += 1;
-    }
-    res[letter] = '\0';
-    return (res);
-}
-
 char    *my_recursive(char *str, char *div, char *result, int cursor)
 {
     int var_result = 0;
@@ -51,6 +33,7 @@ char    *my_recursive(char *str, char *div, char *result, int cursor)
     }
     result[cursor] = var_result + '0';
     check = my_infin_sub(div, my_delete_neg(check));
+    printf("%s\n", check);
     str = my_strcat(check, my_supr_same(str, str_temp));
     if (my_infin_cmp(div, str) == 0) {
         return (my_recursive(str, div, result, cursor + 1));
@@ -85,4 +68,12 @@ char    *my_infin_div(char *str, char *div)
         return (result);
     } else
         return (my_error_div(1));
+}
+
+int main(int ac, char *av[])
+{
+    char *res = my_infin_div(av[1], av[2]);
+    printf("%s\n", res);
+    free (res);
+    return (0);
 }
