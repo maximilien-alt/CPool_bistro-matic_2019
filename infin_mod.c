@@ -15,9 +15,12 @@ char *my_infin_mult(char *str, char *mult);
 
 char *my_infin_div(char *str, char *div);
 
-char *my_mod_res(char *result, char *div)
+char *my_mod_res(char *result, char *div, char *str)
 {
-    if (div[0] == '-') {
+    if (div[0] == '-' && str[0] == '-') {
+        return (my_str_delete_null(result));
+    }
+    if (div[0] == '-' || str[0] == '-') {
         my_revstr(result);
         result = my_strcat(result, "-");
         my_revstr(result);
@@ -47,5 +50,5 @@ char *my_infin_mod(char *str, char *div)
     } else {
         return (str);
     }
-    return (my_mod_res(result, div));
+    return (my_mod_res(result, div, str));
 }
