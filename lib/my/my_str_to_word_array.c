@@ -19,7 +19,9 @@ int my_nb_word(char const *str)
     int number = 0;
 
     for (int letter = 0; str[letter]; letter += 1) {
-        if ((is_alphanum(str[letter])) && !(is_alphanum(str[letter - 1]))) {
+        if (letter == 0 && is_alphanum(str[letter]))
+            number += 1;
+        else if ((is_alphanum(str[letter])) && !(is_alphanum(str[letter - 1]))){
             number += 1;
         }
     }
