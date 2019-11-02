@@ -9,53 +9,43 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-char *my_recursive1(char *str, char *div, char *result, int cursor)
-{
-    char *str_temp = my_strtemp(str, div);
-    char *check = my_infin_sub(str_temp, div);
-    int var_result = 0;
+char *my_infin_sub(char *str, char *str2);
 
-    my_revstr(str_temp);
-    my_revstr(div);
-    while (check[0] != '-') {
-        check = my_infin_sub(check, div);
-        my_revstr(div);
-        var_result += 1;
+char *my_infin_mult(char *str, char *mult);
+
+char *my_infin_div(char *str, char *div);
+
+char *my_mod_res(char *result, char *div)
+{
+    if (div[0] == '-') {
+        my_revstr(result);
+        result = my_strcat(result, "-");
+        my_revstr(result);
     }
-    result[cursor] = var_result + '0';
-    result[cursor + 1] = '\0';
-    check = my_infin_sub(div, my_delete_neg(check));
-    str = my_strcat(check, my_supr_same(str, str_temp));
-    if (my_infin_cmp(div, str) == 0) {
-        return (my_recursive1(str, my_revstr(div), result, cursor + 1));
-    } else {
-        return (check);
-    }
+    return (my_str_delete_null(result));
+
 }
 
 char *my_infin_mod(char *str, char *div)
 {
     char *result;
-    char *str_new = my_delete_neg(str);
-    char *div_new = my_delete_neg(div);
+    char *str_new = my_delete_neg(my_str_delete_null(str));
+    char *div_new = my_delete_neg(my_str_delete_null(div));
+    char *div2;
+    char *mult;
 
-    if (div[0] == '0') {
-        result = "error";
-        return (result);
-    }
+    if (div_new[0] == '0')
+        return ("error");
     if (my_infin_cmp(str_new, div_new) == 1) {
-        if (str[0] == '-' || div[0] == '-') {
-            result = malloc(sizeof(char) * (my_strlen(str)+ 2));
-            result[0] = '-';
-            result[1] = '\0';
-            result = my_recursive1(str_new, div_new, &result[1], 0);
-        } else {
-            result = malloc(sizeof(char) * (my_strlen(str)+ 1));
-            result[0] = '\0';
-            result = my_recursive1(str, div, result, 0);
-        }
+        div2 = my_infin_div(str_new, div_new);
+        my_revstr(str_new);
+        my_revstr(div_new);
+        mult = my_infin_mult(div2, div_new);
+        my_revstr(str_new);
+        my_revstr(div_new);
+        result = my_infin_sub(str_new, mult);
     } else {
-        result = (str);
+        return (str);
     }
-    return (&result[0]);
+    return (my_mod_res(result, div));
 }

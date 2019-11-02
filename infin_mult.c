@@ -25,7 +25,8 @@ char *my_add_final(char *add_total, char *str, char *mult)
         return (add_total);
     my_revstr(add_total);
     add_total = my_strcat(add_total, "-");
-    return (my_revstr(add_total));
+    my_revstr(add_total);
+    return (my_str_delete_null(add_total));
 }
 
 char    *my_result1(char *result, int ret, int cursor, int c)
