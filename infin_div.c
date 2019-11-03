@@ -50,9 +50,8 @@ char *my_infin_div(char *str, char *div)
     char *str_new = my_delete_neg(str);
     char *div_new = my_delete_neg(div);
 
-    if (div[0] == '0') {
+    if (div[0] == '0')
         return ("error");
-    }
     if (my_infin_cmp(str_new, div_new) == 1) {
         if (str[0] == '-' || div[0] == '-') {
             result = malloc(sizeof(char) * (my_strlen(str)+ 2));
