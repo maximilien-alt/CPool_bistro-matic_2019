@@ -45,7 +45,7 @@ int    bistro_main(char *buff, char **av, int size, char *result)
 {
     int ac = 1;
 
-    for(int icr = 1; av[icr] != NULL; icr +=1) {
+    for (int icr = 1; av[icr] != NULL; icr += 1) {
         if (av[icr][0] != 0 && av[icr][0] != '\n')
             ac += 1;
     }
@@ -98,7 +98,7 @@ int    main(void)
     av[2] = malloc(sizeof(char) * 8);
     av[3] = malloc(sizeof(char) * 10);
     my_putstr("If you want to read the man press 0");
-    my_putstr(" and if you want to use the calcuator press 1\n");
+    my_putstr(" and if you want to use the calculator press 1\n");
     read(0, test, 2);
     if (test[0] == '1')
         continue_of_main(av, tempo, buff, result);

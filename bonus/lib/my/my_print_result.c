@@ -16,19 +16,18 @@ void my_print_result(char *result)
     my_putstr(" o");
     for (int icr = 0; icr < len + 13; icr += 1)
         my_putchar('-');
-    my_putstr("o\n |");
+    my_putstr("o\n | ");
     my_putstr("The result = ");
-    for (int icr = 0; icr < len - 1; icr += 1)
+    for (int icr = 0; icr < len - 2; icr += 1)
         my_putchar(' ');
-    my_putstr(" |\n");
-    my_putstr(" |");
+    my_putstr(" | \n");
+    my_putstr(" | ");
     for (int icr = 0; icr < 8; icr += 1)
         my_putchar(' ');
     my_putstr(result);
-    for (int icr = 0; icr < 5; icr += 1)
+    for (int icr = 0; icr < 3; icr += 1)
         my_putchar(' ');
-    my_putstr("|\n");
-    my_putstr(" o");
+    my_putstr(" | \n o");
     for (int icr = 0; icr < len + 13; icr += 1)
         my_putchar('-');
     my_putstr("o\n");
