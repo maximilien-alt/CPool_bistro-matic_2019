@@ -50,10 +50,8 @@ char *my_infin_div(char *str, char *div)
     char *str_new = my_delete_neg(str);
     char *div_new = my_delete_neg(div);
 
-    if (div[0] == '0') {
-        result = "error";
-        return (result);
-    }
+    if (div[0] == '0')
+        return ("error");
     if (my_infin_cmp(str_new, div_new) == 1) {
         if (str[0] == '-' || div[0] == '-') {
             result = malloc(sizeof(char) * (my_strlen(str)+ 2));
@@ -65,8 +63,7 @@ char *my_infin_div(char *str, char *div)
             result[0] = '\0';
             my_recursive(str, div, result, 0);
         }
-    } else {
+    } else
         result = "0";
-    }
     return (&result[0]);
 }

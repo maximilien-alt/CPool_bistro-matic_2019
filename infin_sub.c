@@ -56,8 +56,8 @@ char *create_my_sub(char *str, char *str2, char *result)
 char *my_infin_sub(char *str, char *str2)
 {
     char *result;
-    char *str_new = my_str_delete_null(str);
-    char *str2_new = my_str_delete_null(str2);
+    char *str_new = my_delete_neg(my_str_delete_null(str));
+    char *str2_new = my_delete_neg(my_str_delete_null(str2));
     char *cpy;
 
     if (my_infin_cmp(str_new, str2_new) == 1) {
@@ -75,13 +75,3 @@ char *my_infin_sub(char *str, char *str2)
         return (&result[0]);
     }
 }
-
-/*int main(int ac, char **av)
-{
-    char *result = my_infin_sub(av[1], av[2]);
-
-    my_putstr(result);
-    my_putchar('\n');
-    free (result);
-    return (0);
-}*/

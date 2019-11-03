@@ -84,6 +84,10 @@ int    main(int ac, char **av)
         return (0);
     }
     size = my_getnbr(av[3]);
+    if (size > 60) {
+        my_putstr("0");
+        return (0);
+    }
     bistro_main(ac, av, size, result);
     return (0);
 }

@@ -5,12 +5,19 @@
 ** my_add_x_zero.c
 */
 
-char    *my_add_x_zero(char *str, int x, int cursor)
+#include <stdlib.h>
+
+char    *my_add_x_zero(int cursor)
 {
-    while (x > 0) {
-        str[cursor] = '0';
-        cursor += 1;
-        x += -1;
+    char *res;
+    int x = 0;
+
+    res = malloc(sizeof(char) * (cursor + 1));
+    while (cursor > 0) {
+        res[x] = '0';
+        cursor += -1;
+        x += 1;
     }
-    return (str);
+    res[x] = '\0';
+    return (res);
 }
