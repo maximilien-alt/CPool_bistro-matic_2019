@@ -51,8 +51,7 @@ char *my_infin_div(char *str, char *div)
     char *div_new = my_delete_neg(div);
 
     if (div[0] == '0') {
-        result = "error";
-        return (result);
+        return ("error");
     }
     if (my_infin_cmp(str_new, div_new) == 1) {
         if (str[0] == '-' || div[0] == '-') {
@@ -65,8 +64,7 @@ char *my_infin_div(char *str, char *div)
             result[0] = '\0';
             my_recursive(str, div, result, 0);
         }
-    } else {
+    } else
         result = "0";
-    }
     return (&result[0]);
 }
